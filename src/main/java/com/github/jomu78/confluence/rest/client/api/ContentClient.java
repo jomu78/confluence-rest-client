@@ -2,6 +2,7 @@
  * Copyright 2016 Micromata GmbH
  * Modifications Copyright 2017 Martin Böhmer
  * Modifications Copyright 2017 Luca Tagliani
+ * Modifications Copyright 2019 Joern Muehlencord
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,6 +19,7 @@
 package com.github.jomu78.confluence.rest.client.api;
 
 import com.github.jomu78.confluence.rest.core.api.domain.content.AttachmentBean;
+import com.github.jomu78.confluence.rest.core.api.domain.content.AttachmentQueryBean;
 import com.github.jomu78.confluence.rest.core.api.domain.content.CommentBean;
 import com.github.jomu78.confluence.rest.core.api.domain.content.CommentResultsBean;
 import com.github.jomu78.confluence.rest.core.api.domain.content.ContentBean;
@@ -38,6 +40,7 @@ import java.util.concurrent.Future;
  *
  * @author Christian Schulze (c.schulze@micromata.de)
  * @author Martin Böhmer
+ * @author Joern Muehlencord (joern@muehlencord.de)
  */
 public interface ContentClient {
 
@@ -161,6 +164,18 @@ public interface ContentClient {
      *         attachment.
      */
     public Future<AttachmentBean> uploadAttachment(AttachmentBean attachment, ContentBean parentContent);
+    
+    /**
+     * Uploads the provided attachment to content (page or blogpost).
+     *
+     * @param attachment    The attachement to update. It must have a valid id.
+     * @param parentContent The content (page or blogpost) to upload the
+     *                      attachment to.
+     *
+     * @return A {@link Future} with the {@link AttachmentQueryBean} representing the
+     *         uploaded attachement. 
+     */        
+    public Future<AttachmentQueryBean> updateAttachment(AttachmentBean attachment, ContentBean parentContent);
 
     /**
      * Downalds the given attachment.

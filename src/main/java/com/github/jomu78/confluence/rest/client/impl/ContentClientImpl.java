@@ -1,6 +1,7 @@
 /**
  * Copyright 2016 Micromata GmbH
  * Modifications Copyright 2017 Martin Böhmer
+ * Modifications Copyright 2019 Joern Muehlencord
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -51,6 +52,7 @@ import org.slf4j.LoggerFactory;
 import com.github.jomu78.confluence.rest.client.api.ContentClient;
 import com.github.jomu78.confluence.rest.core.api.RequestService;
 import com.github.jomu78.confluence.rest.core.api.domain.content.AttachmentBean;
+import com.github.jomu78.confluence.rest.core.api.domain.content.AttachmentQueryBean;
 import com.github.jomu78.confluence.rest.core.api.domain.content.AttachmentResultsBean;
 import com.github.jomu78.confluence.rest.core.api.domain.content.CommentBean;
 import com.github.jomu78.confluence.rest.core.api.domain.content.CommentResultsBean;
@@ -68,6 +70,7 @@ import com.github.jomu78.confluence.rest.core.api.misc.UnexpectedContentExceptio
 /**
  * @author Christian Schulze (c.schulze@micromata.de)
  * @author Martin Böhmer
+ * @author Joern Muehlencord (joern@muehlencord.de)
  */
 public class ContentClientImpl extends BaseClientImpl implements ContentClient {
 
@@ -272,9 +275,11 @@ public class ContentClientImpl extends BaseClientImpl implements ContentClient {
     }
 
     @Override
-    public Future<AttachmentBean> uploadAttachment(AttachmentBean attachment, ContentBean parentContent) {
+    public Future<AttachmentBean> uploadAttachment(AttachmentBean attachment, ContentBean parentContent)  {
         return executorService.submit(() -> {
             // URI
+            // if a new file should be uploaded: /content/{id}/child/attachment
+            // if an existing file should be replaced: /content/{id}/child/attachment/{attachmentId}/data
             String attachmentUriPath = String.format(CONTENT_ATTACHMENT, parentContent.getId());
             URI uri = buildPath(attachmentUriPath).build();
             // Check for comment
@@ -282,6 +287,7 @@ public class ContentClientImpl extends BaseClientImpl implements ContentClient {
             if (attachment.getMetadata() != null && attachment.getMetadata().getComment() != null) {
                 comment = attachment.getMetadata().getComment();
             }
+
             // Request
             AttachmentResultsBean results = executePostRequestForUpload(uri, attachment.getInputStream(), attachment.getTitle(), comment, AttachmentResultsBean.class);
 
@@ -294,6 +300,36 @@ public class ContentClientImpl extends BaseClientImpl implements ContentClient {
                 return (AttachmentBean) results.getResults().get(0);
             } else {
                 throw new UnexpectedContentException("Attachment result set with 1 element", "Attachemnt result set with " + numberOfResults + " elements");
+            }
+        });
+    }
+
+    @Override
+    public Future<AttachmentQueryBean> updateAttachment(AttachmentBean attachment, ContentBean parentContent) {
+        return executorService.submit(() -> {
+
+            if (attachment.getId() == null) {
+                throw new IllegalArgumentException("ID of the attachment cannot be null");
+            }
+
+            // URI
+            // if a new file should be uploaded: /content/{id}/child/attachment
+            // if an existing file should be replaced: /content/{id}/child/attachment/{attachmentId}/data
+            String attachmentUriPath = String.format(RestPathConstants.CONTENT_EXISTING_ATTACHMENT, parentContent.getId(), attachment.getId());
+            URI uri = buildPath(attachmentUriPath).build();
+
+            // Check for comment
+            String comment = null;
+            if (attachment.getMetadata() != null && attachment.getMetadata().getComment() != null) {
+                comment = attachment.getMetadata().getComment();
+            }
+
+            // Request
+            AttachmentQueryBean results = executePostRequestForUpdateUpload(uri, attachment.getInputStream(), attachment.getTitle(), comment, AttachmentQueryBean.class);
+            if (results == null) {
+                throw new UnexpectedContentException("Attachment result", "null value");
+            } else {
+                return results;
             }
         });
     }

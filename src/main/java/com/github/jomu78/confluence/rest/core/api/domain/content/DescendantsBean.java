@@ -1,5 +1,6 @@
 /**
  * Copyright 2016 Micromata GmbH
+ * Modifications Copyright 2019 Joern Muehlencord
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,8 +16,35 @@
  */
 package com.github.jomu78.confluence.rest.core.api.domain.content;
 
+import com.github.jomu78.confluence.rest.core.api.domain.BaseBean;
+import com.google.gson.annotations.Expose;
+
 /**
  * @author Christian Schulze (c.schulze@micromata.de)
+ * @author Joern Muehlencord (joern@muehlencord.de)
  */
-public class DescendantsBean {
+public class DescendantsBean extends BaseBean {
+
+    @Expose
+    AttachmentQueryResultsBean attachment = null;
+
+    @Expose
+    CommentResultsBean comment = null;
+
+    public AttachmentQueryResultsBean getAttachment() {
+        return attachment;
+    }
+
+    public void setAttachment(AttachmentQueryResultsBean attachment) {
+        this.attachment = attachment;
+    }
+
+    public CommentResultsBean getComment() {
+        return comment;
+    }
+
+    public void setComment(CommentResultsBean comment) {
+        this.comment = comment;
+    }
+
 }

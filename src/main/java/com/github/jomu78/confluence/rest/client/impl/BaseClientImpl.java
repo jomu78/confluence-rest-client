@@ -1,6 +1,7 @@
 /**
  * Copyright 2016 Micromata GmbH
  * Modifications Copyright 2017 Martin Böhmer
+ * Modifications Copyright 2019 Joern Muehlencord
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,6 +25,7 @@ import org.apache.http.client.utils.URIBuilder;
 
 import com.github.jomu78.confluence.rest.core.api.RequestException;
 import com.github.jomu78.confluence.rest.core.api.RequestService;
+import com.github.jomu78.confluence.rest.core.api.domain.content.AttachmentQueryBean;
 import com.github.jomu78.confluence.rest.core.api.domain.content.AttachmentResultsBean;
 import com.github.jomu78.confluence.rest.core.impl.APIUriProvider;
 import com.github.jomu78.confluence.rest.core.api.util.URIHelper;
@@ -31,6 +33,7 @@ import com.github.jomu78.confluence.rest.core.api.util.URIHelper;
 /**
  * @author Christian Schulze (c.schulze@micromata.de)
  * @author Martin Böhmer
+ * @author Joern Muehlencord (joern@muehlencord.de)
  */
 public abstract class BaseClientImpl {
 
@@ -72,6 +75,11 @@ public abstract class BaseClientImpl {
 
     protected AttachmentResultsBean executePostRequestForUpload(URI uri, InputStream inputStream, String title,
             String comment, Class<AttachmentResultsBean> resultClass) throws RequestException {
-        return requestService.executePostRequestForUpload(uri, inputStream, title, comment, resultClass);
+        return requestService.executePostRequestForUpload(uri, inputStream, title, comment, false, resultClass);
     }
+    
+    protected AttachmentQueryBean executePostRequestForUpdateUpload(URI uri, InputStream inputStream, String title,
+            String comment, Class<AttachmentQueryBean> resultClass) throws RequestException {
+        return requestService.executePostRequestForUpload(uri, inputStream, title, comment, true, resultClass);
+    }    
 }

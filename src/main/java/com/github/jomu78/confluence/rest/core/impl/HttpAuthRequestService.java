@@ -1,6 +1,7 @@
 /**
  * Copyright 2017 Martin Böhmer
  * Modifications Copyright 2017 Luca Tagliani
+ * Modifications Copyright 2019 Joern Muehlencord
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -61,6 +62,9 @@ import org.apache.http.client.methods.HttpPut;
 
 /**
  * {@link RequestService} implementation based on basic authentication.
+ * 
+ * @author Martin Böhmer 
+ * @author Joern Muehlencord (joern@muehlencord.de)
  */
 public class HttpAuthRequestService extends AbstractRequestService implements RequestService {
 
@@ -114,9 +118,7 @@ public class HttpAuthRequestService extends AbstractRequestService implements Re
     }
 
     /**
-     * Closes the Confluence client and associated resources, like the HTTP
-     * client
-     * and the {@link ExecutorService}.
+     * Closes the Confluence client and associated resources, like the HTTP client and the {@link ExecutorService}.
      */
     public void close() {
         LOG.debug("Closing HTTP client");
@@ -235,7 +237,7 @@ public class HttpAuthRequestService extends AbstractRequestService implements Re
             throw new RequestException(e);
         }
     }
-    
+
     @Override
     public <T> T executePutRequest(URI uri, Object content, Class<T> resultClass) throws RequestException {
         try {
@@ -248,10 +250,9 @@ public class HttpAuthRequestService extends AbstractRequestService implements Re
     }
 
     @Override
-    public <T> T executePostRequestForUpload(URI uri, InputStream inputStream, String title, String comment,
-            Class<T> resultClass) throws RequestException {
+    public <T> T executePostRequestForUpload(URI uri, InputStream inputStream, String title, String comment, boolean isReplaceExisting, Class<T> resultClass) throws RequestException {
         try {
-            HttpPost method = HttpMethodFactory.createPostMethodForUpload(uri, inputStream, title, comment);
+            HttpPost method = HttpMethodFactory.createPostMethodForUpload(uri, inputStream, title, comment, isReplaceExisting);
             return executeRequest(method, resultClass);
         } catch (IOException | RestException e) {
             throw new RequestException(e);

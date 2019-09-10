@@ -1,6 +1,7 @@
 /**
  * Copyright 2016 Micromata GmbH
  * Modifications Copyright 2017 Martin Böhmer
+ * Modifications Copyright 2019 Joern Muehlencord
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,6 +20,7 @@ package com.github.jomu78.confluence.rest.core.api.misc;
 /**
  * @author Christian Schulze (c.schulze@micromata.de)
  * @author Martin Böhmer
+ * @author Joern Muehlencord (joern@muehlencord.de)
  */
 public enum ExpandField {
     SPACE("space", "content."),
@@ -32,7 +34,9 @@ public enum ExpandField {
     DESCENDANTS("descendants", "content."),
     ANCESTORS("ancestors", "content."),
     RESTRICTIONS("restrictions", "content."),
-    METADATA_LABELS("metadata.labels", "content.");
+    METADATA_LABELS("metadata.labels", "content."),
+    ATTACHMENTS ("descendants.attachment", "content."),
+    ATTACHMENT_COMMENTS ("descendants.comment", "content.");
 
     private final String name;
     private final String searchPrefix;

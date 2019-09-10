@@ -1,6 +1,7 @@
 /**
  * Copyright 2016 Micromata GmbH
  * Modifications Copyright 2017 Martin Böhmer
+ * Modifications Copyright 2019 Joern Muehlencord
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -37,6 +38,7 @@ import org.apache.http.entity.mime.MultipartEntityBuilder;
 /**
  * @author Christian Schulze (c.schulze@micromata.de)
  * @author Martin Böhmer
+ * @author Joern Muehlencord (joern@muehlencord.de)
  */
 public class HttpMethodFactory {
 
@@ -75,7 +77,7 @@ public class HttpMethodFactory {
         return method;
     }
 
-    public static HttpPost createPostMethodForUpload(URI uri, InputStream inputStream, String filename, String comment) throws FileNotFoundException {
+    public static HttpPost createPostMethodForUpload(URI uri, InputStream inputStream, String filename, String comment, boolean isReplaceExisting) throws FileNotFoundException {
         HttpPost method = new HttpPost(uri);
         method.addHeader("X-Atlassian-Token", "no-check");
         MultipartEntityBuilder entityBuilder = MultipartEntityBuilder.create();
@@ -84,6 +86,9 @@ public class HttpMethodFactory {
         entityBuilder.addBinaryBody("file", inputStream, org.apache.http.entity.ContentType.DEFAULT_BINARY, filename);
         if (comment != null) {
             entityBuilder.addTextBody("comment", comment);
+        }
+        if (isReplaceExisting) {
+            entityBuilder.addTextBody("minorEdit", "false");
         }
         method.setEntity(entityBuilder.build());
         return method;

@@ -1,6 +1,7 @@
 /**
  * Copyright 2016 Micromata GmbH
  * Modifications Copyright 2017 Martin Böhmer
+ * Modifications Copyright 2019 Joern Muehlencord
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,6 +20,7 @@ package com.github.jomu78.confluence.rest.core.api.misc;
 /**
  * @author Christian Schulze (c.schulze@micromata.de)
  * @author Martin Böhmer
+ * @author Joern Muehlencord (joern@muehlencord.de)
  */
 public interface RestPathConstants {
 
@@ -39,6 +41,8 @@ public interface RestPathConstants {
     String SPECIFIC_CONTENT = CONTENT + "/%1$s";
 
     String CONTENT_ATTACHMENT = SPECIFIC_CONTENT + "/child/attachment";
+    
+    String CONTENT_EXISTING_ATTACHMENT = CONTENT_ATTACHMENT + "/%2$s/data";
 
     String CONTENT_LABEL = SPECIFIC_CONTENT + "/label";
 

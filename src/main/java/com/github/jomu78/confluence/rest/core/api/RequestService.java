@@ -1,6 +1,7 @@
 /**
  * Copyright 2016 Micromata GmbH
  * Modifications Copyright 2017 Martin Böhmer
+ * Modifications Copyright 2019 Joern Muehlencord
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,6 +24,7 @@ import java.net.URI;
  * Supports making requests to a REST API.
  *
  * @author Martin Böhmer
+ * @author Joern Muehlencord (joern@muehlencord.de)
  */
 public interface RequestService {
 
@@ -34,7 +36,7 @@ public interface RequestService {
     
     <T> T executePutRequest(URI uri, Object content, Class<T> resultClass) throws RequestException;
 
-    <T> T executePostRequestForUpload(URI uri, InputStream inputStream, String title, String comment,
+    <T> T executePostRequestForUpload(URI uri, InputStream inputStream, String title, String comment, boolean isReplaceExisting,
             Class<T> resultClass) throws RequestException;
 
 }
