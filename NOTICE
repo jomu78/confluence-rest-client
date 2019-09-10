@@ -1,7 +1,7 @@
 Confluence REST API client
-Copyright 2017 Luca Tagliani
+Copyright 2019 Joern Muehlencord
 
-This product is based on software originally developed by Christian Schulze (c.schulze@micromata.de) at Micromata GmbH and Martin Böhmer.
+This product is based on software originally developed by Christian Schulze (c.schulze@micromata.de) at Micromata GmbH, Martin Böhmer and Luca Tagliani
 See headers of source files for details.
 
 This product makes use of the following software libraries:
