@@ -14,6 +14,7 @@ jdk:
 install: /bin/true
 
 script:
+  - mvn cobertura:cobertura
   - mvn package -Dmaven.javadoc.skip=true -V -B
   
 after_success:
