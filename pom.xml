@@ -418,6 +418,15 @@ limitations under the License.
             <artifactId>commons-validator</artifactId>
             <version>1.6</version>
         </dependency>
+        <!-- 
+        include commons-beanutils directly to get patched version 
+        bundled version 1.9.2 is vulnerable against CVE-2014-0114.
+        -->
+        <dependency>
+            <groupId>commons-beanutils</groupId>
+            <artifactId>commons-beanutils</artifactId>
+            <version>1.9.4</version>
+        </dependency>        
         <!-- Logging -->
         <dependency>
             <groupId>org.slf4j</groupId>
