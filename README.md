@@ -78,17 +78,14 @@ See the License for the specific language governing permissions and limitations 
 [Build Status]:https://travis-ci.org/jomu78/confluence-rest-client
 [Build Status img]:https://travis-ci.org/jomu78/confluence-rest-client.svg?branch=master
 
-[Coverage Status]:https://codecov.io/gh/jomu78/confluence-rest-client
-[Coverage Status img]:https://codecov.io/gh/jomu78/confluence-rest-client/branch/master/graph/badge.svg
-
 [Dependency Status]:https://snyk.io/test/github/jomu78/confluence-rest-client
 [Dependency Status img]:https://snyk.io/test/github/jomu78/confluence-rest-client/badge.svg?style=flat
 
 [license]:LICENSE
 [license img]:https://img.shields.io/badge/license-Apache%202-blue.svg
 
-[Maven Central]:https://maven-badges.herokuapp.com/maven-central/com.github.jomu78/confluence-rest-client
-[Maven Central img]:https://maven-badges.herokuapp.com/maven-central/com.github.jomu78/confluence-rest-client/badge.svg
+[Maven Central]:https://maven-badges.herokuapp.com/maven-central/de.muehlencord/confluence-rest-client
+[Maven Central img]:https://maven-badges.herokuapp.com/maven-central/de.muehlencord/confluence-rest-client/badge.svg
 
-[Javadocs]:http://www.javadoc.io/doc/com.github.jomu78/confluence-rest-client
-[Javadocs img]:http://javadoc.io/badge/com.github.jomu78/confluence-rest-client.svg
+[Javadocs]:http://www.javadoc.io/doc/de.muehlencord/confluence-rest-client
+[Javadocs img]:http://javadoc.io/badge/de.muehlencord/confluence-rest-client.svg

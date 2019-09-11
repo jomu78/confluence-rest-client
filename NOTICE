@@ -6,8 +6,8 @@ See headers of source files for details.
 
 This product makes use of the following software libraries:
 
-  Apache Commons BeanUtils under The Apache Software License, Version 2.0
-  Apache Commons Codec under The Apache Software License, Version 2.0
+  Apache Commons BeanUtils under Apache License, Version 2.0
+  Apache Commons Codec under Apache License, Version 2.0
   Apache Commons Collections under Apache License, Version 2.0
   Apache Commons IO under Apache License, Version 2.0
   Apache Commons Lang under Apache License, Version 2.0
@@ -16,6 +16,7 @@ This product makes use of the following software libraries:
   Apache HttpClient under Apache License, Version 2.0
   Apache HttpClient Mime under Apache License, Version 2.0
   Apache HttpCore under Apache License, Version 2.0
+  BeanShell under Apache License, Version 2.0
   Commons Digester under The Apache Software License, Version 2.0
   Confluence REST Client under Apache License, Version 2.0
   Gson under Apache 2.0
@@ -24,6 +25,5 @@ This product makes use of the following software libraries:
   Logback Classic Module under Eclipse Public License - v 1.0 or GNU Lesser General Public License
   Logback Core Module under Eclipse Public License - v 1.0 or GNU Lesser General Public License
   SLF4J API Module under MIT License
-  SnakeYAML under Apache License, Version 2.0
   testng under Apache 2.0
 

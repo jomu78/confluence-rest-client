@@ -3,7 +3,7 @@ sudo: false
 
 before_cache:
   # No sense in caching current build artifacts
-  - rm -rf $HOME/.m2/repository/com/github/jomu78
+  - rm -rf $HOME/.m2/repository/de/muehlencord/confluence-rest-client
 
 cache:
   directories:
@@ -14,8 +14,6 @@ jdk:
 install: /bin/true
 
 script:
-  - mvn cobertura:cobertura
   - mvn package -Dmaven.javadoc.skip=true -V -B
   
-after_success:
-  - bash <(curl -s https://codecov.io/bash)
+after_success: 
