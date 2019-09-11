@@ -3,7 +3,6 @@
 A simple Java Client to communicate with the Confluence REST API.
 
 [![][Build Status img]][Build Status]
-[![][Coverage Status img]][Coverage Status]
 [![][Dependency Status img]][Dependency Status]
 [![][license img]][license]
 [![][Maven Central img]][Maven Central]
