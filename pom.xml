@@ -191,7 +191,7 @@ limitations under the License.
                     <plugin>
                         <groupId>org.codehaus.mojo</groupId>
                         <artifactId>license-maven-plugin</artifactId>
-                        <version>1.14</version>
+                        <version>2.0.0</version>
                         <executions>
                             <execution>
                                 <id>download-licenses</id>
@@ -238,7 +238,7 @@ limitations under the License.
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-source-plugin</artifactId>
-                    <version>3.1.0</version>
+                    <version>3.2.0</version>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
@@ -396,23 +396,32 @@ limitations under the License.
         <dependency>
             <groupId>org.apache.httpcomponents</groupId>
             <artifactId>httpclient</artifactId>
-            <version>4.5.9</version>
+            <version>4.5.12</version>
         </dependency>
         <dependency>
             <groupId>org.apache.httpcomponents</groupId>
             <artifactId>httpmime</artifactId>
-            <version>4.5.9</version>
+            <version>4.5.12</version>
         </dependency>
+        <!-- 
+        include commons-codec directly to get patched version 
+        httpclient bundled version 1.11 is vulnerable against SNYK-JAVA-COMMONSCODEC-561518
+        -->
+        <dependency>
+            <groupId>commons-codec</groupId>
+            <artifactId>commons-codec</artifactId>
+            <version>1.14</version>
+        </dependency>        
         <!-- JSON -->
         <dependency>
             <groupId>com.google.code.gson</groupId>
             <artifactId>gson</artifactId>
-            <version>2.8.5</version>
+            <version>2.8.6</version>
         </dependency>
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
-            <version>3.9</version>
+            <version>3.10</version>
         </dependency>    
         <dependency>
             <groupId>javax.ws.rs</groupId>
@@ -431,7 +440,7 @@ limitations under the License.
         </dependency>
         <!-- 
         include commons-beanutils directly to get patched version 
-        bundled version 1.9.2 is vulnerable against CVE-2014-0114.
+        commons-validator bundled version 1.9.2 is vulnerable against CVE-2014-0114.
         -->
         <dependency>
             <groupId>commons-beanutils</groupId>
@@ -442,7 +451,7 @@ limitations under the License.
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
-            <version>1.7.28</version>
+            <version>1.7.30</version>
         </dependency>
         <dependency>
             <groupId>ch.qos.logback</groupId>
@@ -454,7 +463,7 @@ limitations under the License.
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
-            <version>6.14.3</version>
+            <version>7.1.0</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
