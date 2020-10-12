@@ -66,7 +66,7 @@ Copyright 2016 Micromata GmbH
 Modifications Copyright 2017 Martin Böhmer  
 Modifications Copyright 2017 Mikkel R. Jakobsen  
 Modifications Copyright 2017-2018 Luca Tagliani
-Modifications Copyright 2019 Joern Muehlencord
+Modifications Copyright 2019-2020 Joern Muehlencord
 
 Licensed under the Apache License, Version 2.0 (the "License"); you may not use these files except in compliance with the License.  
 You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0
